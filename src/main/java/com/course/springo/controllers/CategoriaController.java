@@ -1,9 +1,12 @@
 package com.course.springo.controllers;
 
 import com.course.springo.domain.Categoria;
+import com.course.springo.services.CategoriaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,13 +18,12 @@ import java.util.List;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-    @GetMapping("/listar")
-    public ResponseEntity<Object> listar() {
-        List<Categoria> categorias = new ArrayList<>(
-                Arrays.asList(
-                        new Categoria(1, "Informatica"),
-                        new Categoria(2, "Escritorio")
-                ));
-        return new ResponseEntity<>(categorias, HttpStatus.OK);
+    @Autowired
+    CategoriaService categoriaService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> buscar(@PathVariable Integer id) {
+        Categoria categoria = categoriaService.buscar(id);
+        return new ResponseEntity<>(categoria, HttpStatus.OK);
     }
 }
