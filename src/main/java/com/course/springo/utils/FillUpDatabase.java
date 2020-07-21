@@ -15,7 +15,6 @@ public class FillUpDatabase {
     @Autowired
     private CategoriaRepository repo;
 
-
     List<Categoria> categorias = new ArrayList<>(
             Arrays.asList(
                     new Categoria(null, "Informatica"),
@@ -23,11 +22,7 @@ public class FillUpDatabase {
             )
     );
 
-    public CategoriaRepository getRepo() {
-        return repo;
-    }
-
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public void fillUp(){
+        repo.saveAll(categorias);
     }
 }

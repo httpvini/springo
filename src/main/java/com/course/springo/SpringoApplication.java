@@ -18,8 +18,6 @@ public class SpringoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		fillUpDatabase
-				.getRepo()
-				.saveAll(fillUpDatabase.getCategorias());
+		fillUpDatabase.fillUp();
 	}
 }
